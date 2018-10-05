@@ -1,0 +1,29 @@
+<% content_for :page_header do %>
+    <div class="page-header">
+      <h2>Tickets</h2>
+    </div>
+  <% end %>
+<div class="col-md-11">
+<table class="table table-bordered table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Request Number</th>
+      <th scope="col">Sequence Number</th>
+      <th scope="col">Request Type</th>
+      <th scope="col">Response Due Date</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.request_number %></td>
+      <td><%= ticket.sequence_number %></td>
+      <td><%= ticket.request_type %></td>
+      <td><%= ticket.response_due_date_time %></td>
+      <td><%= link_to "Show", show_ticket_path(ticket), class:"btn btn-primary" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

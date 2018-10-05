@@ -1,0 +1,96 @@
+<% content_for :page_header do %>
+    <div class="page-header">
+      <h2>Ticket Details</h2>
+    </div>
+<% end %>
+
+<div class="col-md-12">
+<div class="card">
+ <form>
+ <div class="row">
+ <div class="col-md-5">
+     <label>Request Number:</label>
+     <p><%= @ticket.request_number %></p>
+ </div>
+ <div class="col-md-4">
+     <label>Sequence Number:</label>
+     <p><%= @ticket.sequence_number %></p>
+ </div>
+ <div class="col-md-3">
+     <label>Request Type:</label>
+     <p><%= @ticket.request_type %></p>
+ </div>
+ </div>
+ <div class="row">
+ <div class="col-md-5">
+     <label>Response Due Date:</label>
+     <p><%= @ticket.response_due_date_time %></p>
+ </div>
+ <div class="col-md-4">
+     <label>Primary Service Area Code:</label>
+     <p><%= @ticket.primary_service_area_code %></p>
+ </div>
+ <div class="col-md-3">
+     <label>Additional Service Area Codes:</label>
+     <p><%= @ticket.additional_service_area_code %></p>
+ </div>
+ </div>
+ </form>
+ <form>
+ <h4>Excavator Details </h4>
+ <div class="row">
+ <div class="col-md-5">
+     <label>Company Name:</label>
+     <p><%= @excavator.company_name %></p>
+ </div>
+ <div class="col-md-4">
+     <label>Address:</label>
+     <p><%= @excavator.address %></p>
+ </div>
+ <div class="col-md-3">
+     <label>Crew Ondite:</label>
+     <p><%= @excavator.crew_onsite %></p>
+ </div>
+ </div>
+ </form>
+</div>
+<div id="map"></div>
+</div>
+<style>
+      #map {
+        height: 100%;
+      }
+</style>
+<script>
+
+      // This example creates a simple polygon representing the Bermuda Triangle.
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: {lat: 24.886, lng: -70.268},
+          mapTypeId: 'terrain'
+        });
+
+        // Define the LatLng coordinates for the polygon's path.
+        var polugonData = getLatLng(<%= @mapdata.inspect.html_safe %>)
+        // Construct the polygon.
+        var drawPolygon = new google.maps.Polygon({
+          paths: polugonData,
+          strokeColor: '#FF0000',
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+        drawPolygon.setMap(map);
+      }
+
+      function getLatLng(data) {
+        var latLngArray = []
+        for (var i = 0; i < data.length; i++) {
+            latLngArray.push({lat: parseFloat(data[i][0]), lng: parseFloat(data[i][1])})
+        }              
+        return latLngArray
+      }
+    </script>

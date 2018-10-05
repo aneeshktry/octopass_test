@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% @title = @heading ? "#{@heading}" : "Octopass" %>
+    <title><%= @title %></title>
+    <%= stylesheet_link_tag    'application', :media => 'all' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdbQdhoM9YlDl-zOXCda7pTJZfwDkhgtU&callback=initMap">
+    </script>
+  </head>
+  <body>
+    <%= render :partial=>"/layouts/header" %>
+    <div class="container">
+    <%= yield :page_header %>
+    <%= yield %>
+    </div>
+  </body>
+</html>
