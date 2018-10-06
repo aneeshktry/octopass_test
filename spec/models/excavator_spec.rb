@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Excavator, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:all) do
+    @excavator = build(:excavator)
+  end
+  it "should validate with valid attribute" do
+    expect(@excavator).to be_valid
+  end
+  
 end
