@@ -1,7 +1,7 @@
 FactoryBot.define do
   
     factory :ticket do
-      request_number { "09252012-00002" }
+      sequence(:request_number) {|n| "09252012-#{n}" }
       sequence_number { "2421" }
       request_type { "Normal" }
       response_due_date_time { '2011/07/13 23:59:59' }

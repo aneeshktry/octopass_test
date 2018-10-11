@@ -40,7 +40,7 @@ class Api::V1::TicketsController < ApplicationController
     
     errors = {}
     %w{RequestNumber SequenceNumber RequestType DateTimes ServiceArea Excavator}.each do |key|
-      errors[key] = "can't be blank" if params[key].blank?
+      errors[key] = "#{key} can't be blank" if params[key].blank?
 
     end
 

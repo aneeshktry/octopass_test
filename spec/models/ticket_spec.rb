@@ -9,4 +9,7 @@ RSpec.describe Ticket, type: :model do
   it "should validate with valid attribute" do
     expect(@ticket).to be_valid
   end
+
+  
+
 end
