@@ -124,6 +124,8 @@ JSON_DATA = {
   }
 
   INVALID_DATA = {}
+ 
+  BLANK_DATA = {"RequestNumber": "","SequenceNumber": "","RequestType": "", "DateTimes": "", "ServiceArea": "", "Excavator": ""}
 
 RSpec.describe "Create ticket", :type => :request do
 
@@ -139,6 +141,7 @@ RSpec.describe "Create ticket", :type => :request do
     headers = { "CONTENT_TYPE" => "application/json" }
     post "/api/v1/tickets", :params => INVALID_DATA.to_json , :headers =>headers
     json_response = JSON.parse(response.body)
+    expect(json_response.keys).to match_array(["status", "errors"])
     %w{RequestNumber SequenceNumber RequestType DateTimes ServiceArea Excavator}.each do |key|
       expect(response.body).to include("#{key} can't be blank")
     end
